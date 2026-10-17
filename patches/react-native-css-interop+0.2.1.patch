@@ -1,0 +1,57 @@
+diff --git a/node_modules/react-native-css-interop/dist/runtime/native/native-interop.js b/node_modules/react-native-css-interop/dist/runtime/native/native-interop.js
+index 254b7ba..b565aeb 100644
+--- a/node_modules/react-native-css-interop/dist/runtime/native/native-interop.js
++++ b/node_modules/react-native-css-interop/dist/runtime/native/native-interop.js
+@@ -254,6 +254,7 @@ function applyStyles(state, refs) {
+     state = {
+         ...state,
+         props: {},
++        passthrough: undefined,
+         styleTracking: { effect: state.styleTracking.effect, guards: [] },
+     };
+     const delayedValues = [];
+@@ -267,8 +268,33 @@ function applyStyles(state, refs) {
+     processTransition(state, refs, seenAnimatedProps);
+     retainSharedValues(state, seenAnimatedProps);
+     cleanup(state.props, state.config);
++    applyPassthrough(state);
+     return state;
+ }
++// Pressable style functions and Reanimated animated styles cannot be merged
++// into a plain style object, so keep them as separate entries after it.
++function applyPassthrough(state) {
++    if (!state.passthrough || state.config.target.length !== 1)
++        return;
++    const key = state.config.target[0];
++    const functions = state.passthrough.filter((entry) => typeof entry === "function");
++    const animated = state.passthrough.filter((entry) => typeof entry !== "function");
++    let value = state.props[key];
++    if (animated.length > 0) {
++        value = [value, ...animated];
++    }
++    if (functions.length > 0) {
++        const base = value;
++        value = (interaction) => [base, ...functions.map((fn) => fn(interaction))];
++    }
++    state.props[key] = value;
++}
++function isPassthroughStyle(declaration) {
++    return (typeof declaration === "function" ||
++        (typeof declaration === "object" &&
++            declaration !== null &&
++            "viewDescriptors" in declaration));
++}
+ function processAnimations(state, refs, seenAnimatedProps) {
+     if (state.currentRenderAnimation?.name?.length) {
+         state.sharedValues ??= new Map();
+@@ -559,6 +585,10 @@ function applyRules(state, refs, declarations, delayedValues) {
+                 }
+             }
+         }
++        else if (isPassthroughStyle(declaration)) {
++            state.passthrough ??= [];
++            state.passthrough.push(declaration);
++        }
+         else {
+             (0, shared_1.assignToTarget)(props, { ...declaration }, state.config, {
+                 objectMergeStyle: "assign",
