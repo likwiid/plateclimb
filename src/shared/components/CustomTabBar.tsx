@@ -104,7 +104,7 @@ export function CustomTabBar({ state, descriptors, navigation }: BottomTabBarPro
       <View
         style={{
           flexDirection: 'row',
-          backgroundColor: 'rgba(20, 20, 25, 0.95)',
+          backgroundColor: 'rgb(20, 20, 25)',
           borderRadius: 24,
           borderWidth: 1,
           borderColor: colors.border.default,
