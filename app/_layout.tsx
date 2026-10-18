@@ -95,7 +95,10 @@ export default function RootLayout() {
           animation: "fade",
         }}
       >
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="(tabs)"
+          options={{ headerShown: false, title: "Program" }}
+        />
         <Stack.Screen
           name="program/week/[weekNumber]"
           options={{ title: "Week" }}
