@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { View, Text, ActivityIndicator } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import { ThemeProvider, DarkTheme } from "@react-navigation/native";
+import { ThemeProvider, DarkTheme, getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import * as SystemUI from "expo-system-ui";
@@ -95,9 +95,17 @@ export default function RootLayout() {
           animation: "fade",
         }}
       >
+        {/* The tab screens use this stack header rather than their own. On iOS 26 a root
+            screen with a hidden native header is sized one header too short, so the
+            bottom of the screen (and the floating tab bar) ignored every tap. */}
         <Stack.Screen
           name="(tabs)"
-          options={{ headerShown: false, title: "Program" }}
+          options={({ route }) => ({
+            title:
+              getFocusedRouteNameFromRoute(route) === "settings"
+                ? "Settings"
+                : "Program",
+          })}
         />
         <Stack.Screen
           name="program/week/[weekNumber]"
