@@ -22,6 +22,25 @@ For the cardio days, pair it with [BaseMile](https://github.com/likwiid/basemile
 a free heart rate running coach from the same team that also runs entirely on
 your phone.
 
+## Install
+
+**Android:** download `PlateClimb-<version>.apk` from the
+[latest release](https://github.com/likwiid/plateclimb/releases/latest) and open
+it on your phone. Allow installs from your browser when Android asks. It needs
+Android 7.0 or newer.
+
+An APK signed with the PlateClimb release key is the official build. The
+certificate SHA-256 fingerprint of that key is:
+
+```
+93:D4:21:35:71:EE:77:B1:B4:D7:B3:37:C9:54:FF:DD:FC:62:30:26:80:FC:08:C9:A9:E7:F9:F2:76:6C:5B:5F
+```
+
+Check it with `apksigner verify --print-certs PlateClimb-<version>.apk`.
+
+**iPhone:** there is no App Store build. Build it from source with Xcode, see
+[Quick start](#quick-start).
+
 ## The program
 
 - **12 weeks in three parts.** Block 1 (weeks 1 to 6) is heavier: compounds
