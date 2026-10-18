@@ -10,7 +10,8 @@ focused features are all welcome.
 - Read [ARCHITECTURE.md](ARCHITECTURE.md) for the module map, the data model
   and how the program is seeded.
 - By contributing you agree that your work is licensed under the project's
-  license, GPL-3.0-or-later.
+  license, GPL-3.0-or-later, including the app store permission in
+  [APP-STORE-EXCEPTION.md](APP-STORE-EXCEPTION.md).
 
 ## Setup
 
