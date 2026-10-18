@@ -15,9 +15,13 @@
       "backgroundColor": "#0A0A0F"
     },
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "com.likwiid.plateclimb",
-      "backgroundColor": "#0A0A0F"
+      "backgroundColor": "#0A0A0F",
+      "buildNumber": "1",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
