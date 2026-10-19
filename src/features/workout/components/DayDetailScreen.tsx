@@ -149,39 +149,46 @@ export function DayDetailScreen({ dayId }: DayDetailScreenProps) {
         <View style={{ height: completedSession ? COMPLETED_SPACER_HEIGHT : DEFAULT_SPACER_HEIGHT }} />
       </ScrollView>
 
-      {/* CTA */}
-      <View
-        className="absolute bottom-0 left-0 right-0 px-4 pt-4 bg-background/90"
-        style={{ paddingBottom: Math.max(insets.bottom, 16) }}
-      >
-        {completedSession ? (
-          <CompletedCTA
-            completedSession={completedSession}
-            exerciseCount={exercises.length}
-            buttonAnimatedStyle={buttonAnimatedStyle}
-            onPressIn={onPressIn}
-            onPressOut={onPressOut}
-            onStartWorkout={handleStartWorkout}
-            onViewSummary={handleViewSummary}
-          />
-        ) : exercises.length === 0 ? (
-          <RestDayCTA
-            sessionKey={dayInfo?.sessionKey ?? ''}
-            buttonAnimatedStyle={buttonAnimatedStyle}
-            onPressIn={onPressIn}
-            onPressOut={onPressOut}
-            onMarkComplete={handleMarkComplete}
-          />
-        ) : (
-          <WorkoutDayCTA
-            incompleteSession={incompleteSession}
-            buttonAnimatedStyle={buttonAnimatedStyle}
-            onPressIn={onPressIn}
-            onPressOut={onPressOut}
-            onStartWorkout={handleStartWorkout}
-            onMarkComplete={handleMarkComplete}
-          />
-        )}
+      {/* CTA: solid footer with a short fade above it, so the list never shows through */}
+      <View className="absolute bottom-0 left-0 right-0" pointerEvents="box-none">
+        <LinearGradient
+          colors={[colors.bg.base + '00', colors.bg.base]}
+          style={{ height: 24 }}
+          pointerEvents="none"
+        />
+        <View
+          className="px-4 pt-1 bg-background"
+          style={{ paddingBottom: Math.max(insets.bottom, 16) }}
+        >
+          {completedSession ? (
+            <CompletedCTA
+              completedSession={completedSession}
+              exerciseCount={exercises.length}
+              buttonAnimatedStyle={buttonAnimatedStyle}
+              onPressIn={onPressIn}
+              onPressOut={onPressOut}
+              onStartWorkout={handleStartWorkout}
+              onViewSummary={handleViewSummary}
+            />
+          ) : exercises.length === 0 ? (
+            <RestDayCTA
+              sessionKey={dayInfo?.sessionKey ?? ''}
+              buttonAnimatedStyle={buttonAnimatedStyle}
+              onPressIn={onPressIn}
+              onPressOut={onPressOut}
+              onMarkComplete={handleMarkComplete}
+            />
+          ) : (
+            <WorkoutDayCTA
+              incompleteSession={incompleteSession}
+              buttonAnimatedStyle={buttonAnimatedStyle}
+              onPressIn={onPressIn}
+              onPressOut={onPressOut}
+              onStartWorkout={handleStartWorkout}
+              onMarkComplete={handleMarkComplete}
+            />
+          )}
+        </View>
       </View>
     </View>
   );

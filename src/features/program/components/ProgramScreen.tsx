@@ -4,7 +4,7 @@ import { View, Text, ScrollView, RefreshControl } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { PROGRAM_NAME, PROGRAM_SUMMARY } from '@data/program';
+import { PROGRAM_DISCLAIMER, PROGRAM_NAME, PROGRAM_SUMMARY } from '@data/program';
 import { routes } from '@shared/constants';
 import { useResponsive } from '@shared/hooks';
 import { colors } from '@shared/theme';
@@ -49,6 +49,7 @@ export default function ProgramScreen() {
         <Text className="text-text-muted text-xs uppercase tracking-wider">Your program</Text>
         <Text className="text-text-primary text-xl font-bold mt-1">{PROGRAM_NAME}</Text>
         <Text className="text-text-secondary text-sm mt-1 leading-5">{PROGRAM_SUMMARY}</Text>
+        <Text className="text-text-muted text-xs mt-1">{PROGRAM_DISCLAIMER}</Text>
       </View>
 
       {blockGroups.map((group) => {

@@ -17,6 +17,8 @@ interface ExerciseImageProps {
 export function ExerciseImage({ name }: ExerciseImageProps) {
   const uri = getExerciseImageUrlByName(name);
   const [failed, setFailed] = useState(false);
+  // Size the frame to the photo itself so it never gets letterbox bars.
+  const [aspectRatio, setAspectRatio] = useState(16 / 9);
   const showPhoto = uri !== null && !failed;
 
   return (
@@ -34,11 +36,15 @@ export function ExerciseImage({ name }: ExerciseImageProps) {
       })}
     >
       {showPhoto ? (
-        <View className="w-full aspect-video bg-white">
+        <View className="w-full bg-surface" style={{ aspectRatio }}>
           <Image
             source={{ uri }}
             style={{ width: '100%', height: '100%' }}
             resizeMode="contain"
+            onLoad={(e) => {
+              const { width, height } = e.nativeEvent.source;
+              if (width > 0 && height > 0) setAspectRatio(width / height);
+            }}
             onError={() => setFailed(true)}
             accessibilityLabel={`${name} start position`}
           />

@@ -10,9 +10,7 @@ export default function TabLayout() {
       screenOptions={{
         sceneStyle: { backgroundColor: colors.bg.base },
         lazy: true,
-        headerStyle: { backgroundColor: colors.bg.base },
-        headerTintColor: colors.text.primary,
-        headerTitleStyle: { fontWeight: "600" },
+        headerShown: false,
         animation: "fade",
       }}
     >
