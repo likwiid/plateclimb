@@ -40,6 +40,14 @@
         {
           "backgroundColor": "#0A0A0F"
         }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "useLegacyPackaging": true
+          }
+        }
       ]
     ],
     "extra": {
