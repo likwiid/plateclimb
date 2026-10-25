@@ -1,6 +1,6 @@
 {
   "name": "plateclimb",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Free, open source, fully local strength training app for Android and iOS with progressive overload built in.",
   "license": "GPL-3.0-or-later",
   "private": true,
@@ -25,6 +25,7 @@
     "babel-preset-expo": "^54.0.10",
     "expo": "~54.0.33",
     "expo-audio": "~1.1.1",
+    "expo-build-properties": "~1.0.10",
     "expo-dev-client": "~6.0.20",
     "expo-font": "~14.0.11",
     "expo-haptics": "~15.0.8",
