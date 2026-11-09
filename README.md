@@ -40,7 +40,9 @@ certificate SHA-256 fingerprint of that key is:
 Check it with `apksigner verify --print-certs PlateClimb-<version>-arm64-v8a.apk`,
 and compare the download with `SHA256SUMS.txt` on the release.
 
-**iPhone:** there is no App Store build. Build it from source with Xcode, see
+**iPhone:** get it free on the
+[App Store](https://apps.apple.com/app/plateclimb/id6824561382). It needs
+iOS 15.1 or newer. You can also build it from source with Xcode, see
 [Quick start](#quick-start).
 
 ## The program
